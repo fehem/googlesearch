@@ -13,11 +13,12 @@ class block_googlesearch extends block_base {
         $this->content->items  = array();
         $searchTermUrlParameter = htmlspecialchars($_GET["searchterm"]);
         $apiKey = '[API-Key]';
+
         if ($searchTermUrlParameter == null) {
             $jsonResponse = file_get_contents("https://customsearch.googleapis.com/customsearch/v1?cx=fd58b2a4eb55453c2&num=10&q=Moodle%20Blocks&key=".$apiKey);
         }
         else {
-            $jsonResponse = file_get_contents("https://customsearch.googleapis.com/customsearch/v1?cx=fd58b2a4eb55453c2&num=10&q='.$searchTermUrlParameter.'&key=".$apiKey);
+            $jsonResponse = file_get_contents('https://customsearch.googleapis.com/customsearch/v1?cx=fd58b2a4eb55453c2&num=10&q='.$searchTermUrlParameter.'&key='.$apiKey);
         }
 
         $jsonDecoded = json_decode($jsonResponse, true);
